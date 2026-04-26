@@ -3,7 +3,6 @@
 
 <head>
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <meta name="description" content="Green India Eco Industries - Handcrafted, plastic-free sustainable products.">
@@ -12,9 +11,7 @@
     <title>{{ p.name if p else "Green India" }} | Eco Industries</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
-
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-
     <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}">
 </head>
 
@@ -39,73 +36,66 @@
             <input type="text" id="productSearch" placeholder="Search products..." class="search-input-glass">
             <button onclick="searchProducts()" class="search-btn-3d">Search</button>
         </div>
+
         <button id="backToProducts" onclick="resetSearch()" class="back-btn-3d"
             style="display:none; position: static; margin: 0 auto 20px auto;">
             ← Back to All Products
         </button>
+
         <div class="product-grid">
-    
-    <div class="product-card-3d">
-        <img src="{{ url_for('static', filename='neem_comb.jpg') }}" class="product-img">
-        <h3>Handcrafted Neem Comb</h3>
-        <p>Natural anti-bacterial wood for scalp health.</p>
-        <div class="card-buttons">
-            <button onclick="window.location.href='/product/neem-comb'" class="order-now-btn">Check Item</button>
-            <button onclick="addToCart()" class="add-to-cart-btn-small">Add to Cart +</button>
-        </div>
-    </div>
 
-    <div class="product-card-3d">
-        <img src="{{ url_for('static', filename='wooden_spoons.jpg') }}" class="product-img">
-        <h3>Sheesham Kitchen Set</h3>
-        <p>Premium heat-resistant wooden cooking tools.</p>
-        <div class="card-buttons">
-            <button onclick="window.location.href='/product/kitchen-set'" class="order-now-btn">Check Item</button>
-            <button onclick="addToCart()" class="add-to-cart-btn-small">Add to Cart +</button>
-        </div>
-    </div>
+            <div class="product-card-3d">
+                <img src="{{ url_for('static', filename='neem_comb.jpg') }}" class="product-img">
+                <h3>Handcrafted Neem Comb</h3>
+                <p>Natural anti-bacterial wood for scalp health.</p>
+                <div class="card-buttons">
+                    <button onclick="window.location.href='/product/neem-comb'" class="order-now-btn">Check Item</button>
+                    <button onclick="addToCart()" class="add-to-cart-btn-small">Add to Cart +</button>
+                </div>
+            </div>
 
-    <div class="product-card-3d">
-        <img src="{{ url_for('static', filename='bamboo_toothbrush.jpg') }}" class="product-img">
-        <h3>Bamboo Toothbrush</h3>
-        <p>Biodegradable handles with charcoal bristles.</p>
-        <div class="card-buttons">
-            <button onclick="window.location.href='/product/toothbrush'" class="order-now-btn">Check Item</button>
-            <button onclick="addToCart()" class="add-to-cart-btn-small">Add to Cart +</button>
-        </div>
-    </div>
+            <div class="product-card-3d">
+                <img src="{{ url_for('static', filename='wooden_spoons.jpg') }}" class="product-img">
+                <h3>Sheesham Kitchen Set</h3>
+                <p>Premium heat-resistant wooden cooking tools.</p>
+                <div class="card-buttons">
+                    <button onclick="window.location.href='/product/kitchen-set'" class="order-now-btn">Check Item</button>
+                    <button onclick="addToCart()" class="add-to-cart-btn-small">Add to Cart +</button>
+                </div>
+            </div>
 
-    <div class="product-card-3d">
-        <img src="{{ url_for('static', filename='carry_bag.jpg') }}" class="product-img">
-        <h3>Compostable Carry Bags</h3>
-        <p>100% biodegradable corn-starch bags.</p>
-        <div class="card-buttons">
-            <button onclick="window.location.href='/product/carry-bag'" class="order-now-btn">Check Item</button>
-            <button onclick="addToCart()" class="add-to-cart-btn-small">Add to Cart +</button>
-        </div>
-    </div>
+            <div class="product-card-3d">
+                <img src="{{ url_for('static', filename='bamboo_toothbrush.jpg') }}" class="product-img">
+                <h3>Bamboo Toothbrush</h3>
+                <p>Biodegradable handles with charcoal bristles.</p>
+                <div class="card-buttons">
+                    <button onclick="window.location.href='/product/toothbrush'" class="order-now-btn">Check Item</button>
+                    <button onclick="addToCart()" class="add-to-cart-btn-small">Add to Cart +</button>
+                </div>
+            </div>
 
-    <div class="product-card-3d">
-        <img src="{{ url_for('static', filename='garbage_liner.jpg') }}" class="product-img">
-        <h3>Bio-Garbage Liners</h3>
-        <p>Heavy-duty, leak-proof eco-friendly liners.</p>
-        <div class="card-buttons">
-            <button onclick="window.location.href='/product/garbage-liner'" class="order-now-btn">Check Item</button>
-            <button onclick="addToCart()" class="add-to-cart-btn-small">Add to Cart +</button>
-        </div>
-    </div>
+            <div class="product-card-3d">
+                <img src="{{ url_for('static', filename='carry_bag.jpg') }}" class="product-img">
+                <h3>Compostable Carry Bags</h3>
+                <p>100% biodegradable corn-starch bags.</p>
+                <div class="card-buttons">
+                    <button onclick="window.location.href='/product/carry-bag'" class="order-now-btn">Check Item</button>
+                    <button onclick="addToCart()" class="add-to-cart-btn-small">Add to Cart +</button>
+                </div>
+            </div>
 
-</div>
-        <script>
-            function searchProducts() {
-                let input = document.getElementById('productSearch').value.toLowerCase();
-                let cards = document.querySelectorAll('.product-card-3d');
-                cards.forEach(card => {
-                    let title = card.querySelector('h3').innerText.toLowerCase();
-                    card.style.display = title.includes(input) ? "block" : "none";
-                });
-            }
-        </script>
+            <div class="product-card-3d">
+                <img src="{{ url_for('static', filename='garbage_liner.jpg') }}" class="product-img">
+                <h3>Bio-Garbage Liners</h3>
+                <p>Heavy-duty, leak-proof eco-friendly liners.</p>
+                <div class="card-buttons">
+                    <button onclick="window.location.href='/product/garbage-liner'" class="order-now-btn">Check Item</button>
+                    <button onclick="addToCart()" class="add-to-cart-btn-small">Add to Cart +</button>
+                </div>
+            </div>
+
+        </div>
+
         <div id="floatingCart" class="floating-cart-bar">
             <div class="cart-info">
                 <span id="cartCount">0</span> Items in Cart
@@ -115,40 +105,38 @@
             </button>
         </div>
 
-        <script>
-            let count = 0;
+    </div>
 
-            // Handle Search
-            function searchProducts() {
-                let input = document.getElementById('productSearch').value.toLowerCase();
-                let cards = document.querySelectorAll('.product-card-3d');
-                let backBtn = document.getElementById('backToProducts');
+    <script>
+        let count = 0;
 
-                if (input.trim() === "") return;
+        function searchProducts() {
+            let input = document.getElementById('productSearch').value.toLowerCase();
+            let cards = document.querySelectorAll('.product-card-3d');
+            let backBtn = document.getElementById('backToProducts');
 
-                cards.forEach(card => {
-                    let title = card.querySelector('h3').innerText.toLowerCase();
-                    card.style.display = title.includes(input) ? "block" : "none";
-                });
-                backBtn.style.display = "inline-block";
-            }
+            if (input.trim() === "") return;
 
-            // Reset Search
-            function resetSearch() {
-                document.querySelectorAll('.product-card-3d').forEach(c => c.style.display = "block");
-                document.getElementById('productSearch').value = "";
-                document.getElementById('backToProducts').style.display = "none";
-            }
+            cards.forEach(card => {
+                let title = card.querySelector('h3').innerText.toLowerCase();
+                card.style.display = title.includes(input) ? "block" : "none";
+            });
 
-            // Add to Cart Logic
-            function addToCart() {
-                count++;
-                document.getElementById('cartCount').innerText = count;
-                document.getElementById('floatingCart').classList.add('active');
-            }
-        </script>
+            backBtn.style.display = "inline-block";
+        }
 
+        function resetSearch() {
+            document.querySelectorAll('.product-card-3d').forEach(c => c.style.display = "block");
+            document.getElementById('productSearch').value = "";
+            document.getElementById('backToProducts').style.display = "none";
+        }
+
+        function addToCart() {
+            count++;
+            document.getElementById('cartCount').innerText = count;
+            document.getElementById('floatingCart').classList.add('active');
+        }
+    </script>
 
 </body>
-
 </html>

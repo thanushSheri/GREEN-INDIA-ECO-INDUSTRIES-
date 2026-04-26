@@ -4,15 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>U-Cut Bag - Green India Eco</title>
+
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    
+
     <style>
-        /* BASE STYLE */
         body {
             margin: 0;
             padding: 0;
             font-family: 'Poppins', sans-serif;
-            /* Same dark forest background from your screenshot */
             background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
                         url("{{ url_for('static', filename='images/background_leaves.jpg') }}") center/cover fixed;
             background-color: #121d12; 
@@ -22,11 +21,9 @@
             min-height: 100vh;
         }
 
-        /* GLASS CARD DESIGN */
         .glass-card {
             background: rgba(255, 255, 255, 0.08);
             backdrop-filter: blur(25px);
-            -webkit-backdrop-filter: blur(25px);
             border: 1px solid rgba(255, 255, 255, 0.15);
             border-radius: 35px;
             padding: 40px;
@@ -39,11 +36,7 @@
             box-shadow: 0 30px 60px rgba(0,0,0,0.5);
         }
 
-        /* THE SCROLLING GALLERY */
-        .gallery-container {
-            width: 100%;
-            overflow: hidden;
-        }
+        .gallery-container { width: 100%; overflow: hidden; }
 
         .scroll-wrapper {
             display: flex;
@@ -65,7 +58,7 @@
         .scroll-slide img {
             width: 100%;
             height: 450px;
-            object-fit: contain; /* Ensures bag isn't cut off */
+            object-fit: contain;
             background: rgba(255,255,255,0.03);
             border-radius: 20px;
         }
@@ -80,20 +73,17 @@
             border-radius: 8px;
             font-size: 12px;
             font-weight: 700;
-            letter-spacing: 1px;
         }
 
-        /* PRODUCT INFO TEXT */
-        .info-panel h1 { font-size: 2.5rem; margin: 0 0 10px 0; font-weight: 700; }
-        .tagline { color: #25D366; font-weight: 600; display: block; margin-bottom: 25px; }
-        
+        .info-panel h1 { font-size: 2.5rem; margin: 0 0 10px 0; }
+        .tagline { color: #25D366; margin-bottom: 25px; display: block; }
+
         .spec-item {
             background: rgba(255, 255, 255, 0.05);
             padding: 18px;
             border-radius: 15px;
             margin-bottom: 12px;
             border-left: 5px solid #25D366;
-            font-size: 15px;
         }
 
         .whatsapp-cta {
@@ -107,47 +97,43 @@
             font-weight: 700;
             font-size: 18px;
             margin-top: 30px;
-            transition: 0.3s;
         }
 
-        .whatsapp-cta:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(37, 211, 102, 0.3); }
-
         @media (max-width: 850px) {
-            .glass-card { grid-template-columns: 1fr; padding: 25px; margin: 20px 0; }
+            .glass-card { grid-template-columns: 1fr; padding: 25px; }
             .scroll-slide img { height: 350px; }
         }
     </style>
 </head>
+
 <body>
 
     <div class="glass-card">
         <div class="gallery-container">
             <div class="scroll-wrapper">
                 <div class="scroll-slide">
-                    <img src="{{ url_for('static', filename='images/bag-front.jpg') }}" alt="Front">
+                    <img src="{{ url_for('static', filename='images/bag-front.jpg') }}">
                     <span class="badge">FRONT VIEW</span>
                 </div>
                 <div class="scroll-slide">
-                    <img src="{{ url_for('static', filename='images/bag-side.jpg') }}" alt="Standing">
+                    <img src="{{ url_for('static', filename='images/bag-side.jpg') }}">
                     <span class="badge">SIDE VIEW</span>
                 </div>
                 <div class="scroll-slide">
-                    <img src="{{ url_for('static', filename='images/bag-sizes.jpg') }}" alt="Variations">
+                    <img src="{{ url_for('static', filename='images/bag-sizes.jpg') }}">
                     <span class="badge">VARIATIONS</span>
                 </div>
                 <div class="scroll-slide">
-                    <img src="{{ url_for('static', filename='images/bag-chart.jpg') }}" alt="Specs">
+                    <img src="{{ url_for('static', filename='images/bag-chart.jpg') }}">
                     <span class="badge">SIZE CHART</span>
                 </div>
             </div>
-            <p style="text-align: center; font-size: 13px; color: #25D366; margin-top: 15px; opacity: 0.8;">◄ Swipe for More Photos ►</p>
         </div>
 
         <div class="info-panel">
-            <span style="color: #25D366; font-size: 14px; font-weight: 600;">● PREMIUM QUALITY</span>
             <h1>U-Cut Bag</h1>
             <span class="tagline">I AM NOT PLASTIC</span>
-            
+
             <div class="spec-item">🌱 100% Biodegradable Corn Starch</div>
             <div class="spec-item">💪 Load: 500g to 15kg</div>
             <div class="spec-item">📏 40 - 50 Microns Thickness</div>

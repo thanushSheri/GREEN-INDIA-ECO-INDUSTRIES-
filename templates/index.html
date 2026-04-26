@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <meta name="description" content="Green India Eco Industries - Handcrafted, plastic-free sustainable products.">
@@ -11,12 +10,12 @@
     <title>{{ p.name if p else "Green India" }} | Eco Industries</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
-
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-
     <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}">
 </head>
+
 <body>
+
     <header class="glass-nav">
         <div class="nav-container">
             <div class="logo-rhyme">
@@ -33,19 +32,16 @@
     </header>
 
     <section class="hero-3d">
+        <div class="hero-content-box">
+            <h1>Green India <span>Eco Industries</span></h1>
+            <p>Leading the way in sustainable manufacturing for a cleaner tomorrow.</p>
 
-    <section class="hero-3d">
-    <div class="hero-content-box">
-        <h1>Green India <span>Eco Industries</span></h1>
-        <p>Leading the way in sustainable manufacturing for a cleaner tomorrow.</p>
-        
-        <div class="hero-btns">
-            <a href="/mission" class="btn-primary-3d">Our Mission</a>
-            <a href="/products" class="add-to-cart-btn hero-product-btn">View Products</a>
+            <div class="hero-btns">
+                <a href="/mission" class="btn-primary-3d">Our Mission</a>
+                <a href="/products" class="add-to-cart-btn hero-product-btn">View Products</a>
+            </div>
         </div>
-    </div>
-</section>
-
+    </section>
 
 </body>
 </html>

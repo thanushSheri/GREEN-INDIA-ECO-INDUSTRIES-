@@ -20,7 +20,6 @@ def contact():
 
 @app.route('/product/<item_id>')
 def product_detail(item_id):
-    # This dictionary must be indented 4 spaces (one Tab)
     products_data = {
         'neem-comb': {
             'name': 'Handcrafted Neem Wood Comb',
@@ -73,7 +72,7 @@ def product_detail(item_id):
         'garbage-liner': {
             'name': 'Bio-Garbage Liners',
             'img': 'garbage_liner.jpg',
-            'stock': False,  # This will show as "Out of Stock"
+            'stock': False,
             'desc': [
                 "Eco-friendly alternative to plastic liners.",
                 "Heavy-duty strength to handle wet waste.",
@@ -84,13 +83,13 @@ def product_detail(item_id):
         }
     }
 
-    # Ensure these lines align vertically with 'products_data'
     product = products_data.get(item_id.lower())
 
     if not product:
         return "<h1>Product Not Found</h1><p>Please return to the <a href='/products'>shop</a>.</p>", 404
 
     return render_template('product_detail.html', p=product)
+
 
 if __name__ == '__main__':
     app.run(debug=True)
