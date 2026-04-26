@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="Green India Eco Industries - Handcrafted, plastic-free sustainable products.">
+    <meta name="keywords" content="Eco-friendly, Neem Comb, Bamboo Toothbrush, Sustainable India">
+
+    <title>{{ p.name if p else "Green India" }} | Eco Industries</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}">
+</head>
+<body class="contact-page-bg">
+    <a href="{{ url_for('products') }}" class="back-btn-3d">← Back to Products</a>
+    <div class="contact-container">
+        <div class="contact-card-transparent">
+            <h2 class="section-title">Place Your <span>Direct Order</span></h2>
+            <p class="contact-subtitle">Connect with us directly for B2B & Bulk inquiries.</p>
+            <div class="direct-lines">
+                <a href="tel:+918639803725" class="contact-method-glass">
+                    <span class="icon-circle"><i class="fas fa-phone-alt" style="color: #e91e63;"></i></span>
+                    <div class="method-text">
+                        <span class="label">CALL US DIRECTLY</span>
+                        <h3 class="value">+91 86398 03725</h3>
+                    </div>
+                </a>
+                <a href="mailto:greenindiaecoindustries@gmail.com" class="contact-method-glass">
+                    <span class="icon-circle"><i class="fas fa-envelope"></i></span>
+                    <div class="method-text">
+                        <span class="label">EMAIL YOUR INQUIRY</span>
+                        <h3 class="value small-text">greenindiaecoindustries@gmail.com</h3>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    
+</body>
+</html>

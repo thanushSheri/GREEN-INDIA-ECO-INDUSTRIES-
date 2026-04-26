@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ p.name }} | Green India</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        /* Base Container - Made Responsive */
+        .product-detail-container {
+            max-width: 1200px;
+            width: 95%; /* 🟢 Fix: Ensures it doesn't touch screen edges on phone */
+            margin: 40px auto;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px); /* For Safari support */
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        .detail-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .main-detail-img {
+            width: 100%;
+            height: auto; /* 🟢 Fix: Keeps image proportions correct */
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+            object-fit: cover;
+        }
+
+        .eco-description {
+            list-style: none;
+            padding: 0;
+            margin: 30px 0;
+        }
+
+        .eco-description li {
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Buttons */
+        .whatsapp-btn {
+            width: 100%;
+            background: linear-gradient(145deg, #25D366, #128C7E);
+            color: white;
+            padding: 18px;
+            border: none;
+            border-radius: 15px;
+            font-weight: 900;
+            font-size: 1.1rem;
+            cursor: pointer;
+            margin-bottom: 12px;
+            transition: 0.3s;
+            box-shadow: 0 8px 15px rgba(37, 211, 102, 0.2);
+        }
+
+        .whatsapp-btn:hover { transform: translateY(-2px); filter: brightness(1.1); }
+
+        .contact-btn-alt {
+            width: 100%;
+            background: transparent;
+            color: white;
+            padding: 15px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        /* 📱 THE MOBILE OVERRIDE (The most important part) */
+        @media (max-width: 768px) {
+            .product-detail-container {
+                padding: 20px; /* 🟢 Fix: Smaller padding so text has room */
+                margin: 20px auto;
+                border-radius: 20px;
+            }
+
+            .detail-layout {
+                grid-template-columns: 1fr; /* 🟢 Fix: Image on top, text on bottom */
+                gap: 30px;
+            }
+
+            h1 {
+                font-size: 1.8rem; /* 🟢 Fix: Large titles wrap poorly on small screens */
+                text-align: center;
+            }
+
+            .main-detail-img {
+                max-height: 400px; /* 🟢 Fix: Prevents image from being too long on mobile */
+            }
+        }
+    </style>
+</head>
+<body class="products-custom-bg">
+
+    <div class="product-detail-container">
+        <a href="/products" style="color: #4caf50; text-decoration: none; font-weight: bold; display: inline-block; margin-bottom: 20px;">
+            ← Back to All Products
+        </a>
+
+        <div class="detail-layout">
+            <div class="detail-image-section">
+                <img src="{{ url_for('static', filename=p.img) }}" class="main-detail-img" alt="{{ p.name }}">
+            </div>
+
+            <div class="detail-text-section">
+                <h1 style="font-size: 3rem; margin-bottom: 5px; font-weight: 900;">{{ p.name }}</h1>
+                
+                <div style="margin-bottom: 20px;">
+                    {% if p.stock %}
+                        <span style="color: #4caf50; background: rgba(76,175,80,0.1); padding: 5px 15px; border-radius: 20px; font-weight: bold; border: 1px solid #4caf50; font-size: 0.8rem;">● IN STOCK</span>
+                    {% else %}
+                        <span style="color: #f44336; background: rgba(244,67,54,0.1); padding: 5px 15px; border-radius: 20px; font-weight: bold; border: 1px solid #f44336; font-size: 0.8rem;">● OUT OF STOCK</span>
+                    {% endif %}
+                </div>
+
+                <h3>Key Features</h3>
+                <ul class="eco-description">
+                    {% for line in p.desc %}
+                        <li>🌱 {{ line }}</li>
+                    {% endfor %}
+                </ul>
+
+                {% if p.stock %}
+                <div class="buy-box">
+                    <p style="margin-bottom: 10px; font-weight: bold; opacity: 0.8;">Quantity</p>
+                    <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 25px; background: rgba(255,255,255,0.05); padding: 10px; border-radius: 12px; width: fit-content;">
+                        <button onclick="changeQty(-1)" style="width: 35px; height: 35px; border: none; background: #4caf50; color: white; border-radius: 8px; cursor: pointer;">-</button>
+                        <input type="number" id="qty" value="1" readonly style="width: 40px; background: transparent; border: none; color: white; text-align: center; font-size: 1.2rem; font-weight: bold;">
+                        <button onclick="changeQty(1)" style="width: 35px; height: 35px; border: none; background: #4caf50; color: white; border-radius: 8px; cursor: pointer;">+</button>
+                    </div>
+                    
+                    <button onclick="sendWhatsApp()" class="whatsapp-btn">💬 Order via WhatsApp</button>
+                    <button onclick="window.location.href='/contact'" class="contact-btn-alt">✉️ Contact for Bulk Inquiry</button>
+                </div>
+                {% else %}
+                <div style="margin-top: 20px; padding: 20px; background: rgba(244,67,54,0.1); border: 1px dashed #f44336; border-radius: 15px; text-align: center;">
+                    <p style="color: #f44336; font-weight: bold;">This item is currently out of stock.</p>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function changeQty(val) {
+            const q = document.getElementById('qty');
+            let current = parseInt(q.value);
+            if (current + val >= 1) {
+                q.value = current + val;
+            }
+        }
+
+        function sendWhatsApp() {
+            const phoneNumber = "+917659987992"; // <-- ENTER YOUR NUMBER HERE
+            const productName = "{{ p.name }}";
+            const quantity = document.getElementById('qty').value;
+            
+            const message = `Hi Green India! I want to order:
+- Item: ${productName}
+- Quantity: ${quantity}
+Please share the payment details.`;
+
+            const encodedMessage = encodeURIComponent(message);
+            window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, '_blank');
+        }
+    </script>
+    
+</body>
+</html>

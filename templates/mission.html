@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="Green India Eco Industries - Handcrafted, plastic-free sustainable products.">
+    <meta name="keywords" content="Eco-friendly, Neem Comb, Bamboo Toothbrush, Sustainable India">
+
+    <title>{{ p.name if p else "Green India" }} | Eco Industries</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}">
+</head>
+<body class="mission-page-bg">
+    <a href="{{ url_for('home') }}" class="back-btn-3d">← Back to Home</a>
+    
+    <main class="mission-container">
+        <div class="mission-glass-card">
+            <h2 class="section-title">Our <span>Green Mission</span></h2>
+            
+            <div class="mission-description">
+                <p class="highlight-text">
+                    At Green India Eco Industries, we are not just manufacturing bags; we are engineering a plastic-free future. 
+                </p>
+                
+                <p>
+                    As an authorized manufacturer of 100% compostable solutions, our mission is to eliminate the toxic footprint of single-use plastics. By utilizing advanced bio-polymers, we create products that provide the strength of plastic but the soul of nature—returning to the earth as nutrient-rich compost within months.
+                </p>
+
+                <div class="mission-values">
+                    <div class="value-box">
+                        <i class="fas fa-seedling"></i>
+                        <h4>Eco-Innovation</h4>
+                        <p>Constantly researching bio-materials to improve durability and compostability.</p>
+                    </div>
+                    <div class="value-box">
+                        <i class="fas fa-industry"></i>
+                        <h4>Industrial Scale</h4>
+                        <p>Providing bulk solutions for retail, hospitality, and industrial waste management.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mission-stats-row">
+                <div class="stat-item">
+                    <span class="stat-num">100%</span>
+                    <span class="stat-label">Compostable</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-num">0%</span>
+                    <span class="stat-label">Microplastics</span>
+                </div>
+            </div>
+            
+            <a href="{{ url_for('products') }}" class="btn-primary-3d">View Our Solutions</a>
+        </div>
+    </main>
+    
+</body>
+</html>
