@@ -13,6 +13,106 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}">
+
+    <style>
+        .back-home-pill {
+            position: absolute;
+            top: 100px;
+            left: 30px;
+            display: inline-flex;
+            align-items: center;
+            padding: 8px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50px;
+            color: rgb(225, 225, 225);
+            text-decoration: none;
+            font-size: 14px;
+            font-family: 'Montserrat', sans-serif;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            z-index: 10;
+        }
+
+        .back-home-pill:hover {
+            background: rgba(241, 239, 237, 0.1);
+            border-color: #05491e;
+            transform: translateX(5px);
+        }
+
+        .products-container {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 120px 20px 40px 20px;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            margin-top: 20px;
+            color: white;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* FLOATING CART STYLES */
+        .floating-cart-bar {
+            position: fixed;
+            bottom: -100px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 92%;
+            max-width: 480px;
+            background: #05491e; /* Your specific dark green */
+            backdrop-filter: blur(10px);
+            padding: 12px 20px;
+            border-radius: 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 1000;
+        }
+
+        .floating-cart-bar.active {
+            bottom: 30px;
+        }
+
+        #cartCount {
+            color: #FFFF00; /* Yellow count */
+            font-size: 1.3rem;
+            font-weight: 900;
+            margin-right: 4px;
+        }
+
+        .order-now-yellow {
+            background: #FFFF00 !important; /* Yellow button */
+            color: #000000 !important;
+            border: none;
+            padding: 10px 22px;
+            border-radius: 25px;
+            font-weight: 800;
+            font-size: 14px;
+            cursor: pointer;
+            text-transform: uppercase;
+            box-shadow: 0 4px 10px rgba(197, 104, 5, 0.2);
+            transition: transform 0.2s;
+        }
+
+        .order-now-yellow:hover {
+            transform: scale(1.05);
+            background: #FFD700 !important;
+        }
+
+        @media (max-width: 768px) {
+            .back-home-pill { top: 80px; left: 10px; padding: 6px 15px; font-size: 12px; }
+            .products-container { padding-top: 140px; }
+        }
+    </style>
 </head>
 
 <body class="products-custom-bg">
@@ -30,11 +130,14 @@
     </nav>
 
     <div class="products-container">
+
+        <a href="/" class="back-home-pill"><span>←</span> Back to Home</a>
+
         <h2 class="section-title">Our <span>Eco-Friendly</span> Catalog</h2>
 
         <div class="search-container-3d">
-            <input type="text" id="productSearch" placeholder="Search products..." class="search-input-glass">
-            <button onclick="searchProducts()" class="search-btn-3d">Search</button>
+            <input type="text" id="productSearch" placeholder="Type to search..." class="search-input-glass">
+            <button class="search-btn-3d">Search</button>
         </div>
 
         <button id="backToProducts" onclick="resetSearch()" class="back-btn-3d"
@@ -42,57 +145,66 @@
             ← Back to All Products
         </button>
 
-       <div class="product-grid">
-    <div class="product-card-3d">
-        <img src="{{ url_for('static', filename='images/bag-front.jpg') }}" class="product-img">
-        <h3>U-Cut Bag</h3>
-        <p>100% biodegradable corn-starch bags.</p>
-        <div class="card-buttons">
-            <button onclick="window.location.href='/product/u-cut-bag'" class="order-now-btn">Check Item</button>
-            <button onclick="addToCart()" class="add-to-cart-btn-small">Add to Cart +</button>
+        <div class="product-grid">
+            {% for id, info in products_data.items() %}
+            <div class="product-card-3d">
+                <img src="{{ url_for('static', filename='images/' + info.images[0]) }}" class="product-img">
+                <h3>{{ info.name }}</h3>
+                <p>{{ info.desc[0] }}</p>
+                <div class="card-buttons">
+                    <button onclick="window.location.href='/product/{{ id }}'" class="order-now-btn">Check Item</button>
+                    <button onclick="addToCart()" class="add-to-cart-btn-small">Add to Cart +</button>
+                </div>
+            </div>
+            {% endfor %}
         </div>
-    </div>
-</div>
 
         <div id="floatingCart" class="floating-cart-bar">
-            <div class="cart-info">
+            <div style="color: rgb(246, 246, 250); font-weight: bold;">
                 <span id="cartCount">0</span> Items in Cart
             </div>
-            <button onclick="window.location.href='/contact'" class="checkout-btn">
-                Order via Contact →
+            <button onclick="window.location.href='/contact'" class="order-now-yellow">
+                Order Now →
             </button>
         </div>
-
     </div>
 
     <script>
         let count = 0;
 
-        function searchProducts() {
-            let input = document.getElementById('productSearch').value.toLowerCase();
+        // 1. ADD TO CART FUNCTION
+        function addToCart() {
+            count++;
+            document.getElementById('cartCount').innerText = count;
+            const cart = document.getElementById('floatingCart');
+            cart.classList.add('active');
+        }
+
+        // 2. LIVE SEARCH FUNCTION (Triggers on first letter)
+        document.getElementById('productSearch').addEventListener('input', function() {
+            let input = this.value.toLowerCase();
             let cards = document.querySelectorAll('.product-card-3d');
             let backBtn = document.getElementById('backToProducts');
-
-            if (input.trim() === "") return;
+            
+            if (input.trim() === "") {
+                resetSearch();
+                return;
+            }
 
             cards.forEach(card => {
                 let title = card.querySelector('h3').innerText.toLowerCase();
+                // If title matches first letter or any part of the search
                 card.style.display = title.includes(input) ? "block" : "none";
             });
 
             backBtn.style.display = "inline-block";
-        }
+        });
 
+        // 3. RESET SEARCH FUNCTION
         function resetSearch() {
             document.querySelectorAll('.product-card-3d').forEach(c => c.style.display = "block");
             document.getElementById('productSearch').value = "";
             document.getElementById('backToProducts').style.display = "none";
-        }
-
-        function addToCart() {
-            count++;
-            document.getElementById('cartCount').innerText = count;
-            document.getElementById('floatingCart').classList.add('active');
         }
     </script>
 
