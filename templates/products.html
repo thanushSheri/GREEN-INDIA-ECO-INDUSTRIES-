@@ -42,59 +42,17 @@
             ← Back to All Products
         </button>
 
-        <div class="product-grid">
-
-            <div class="product-card-3d">
-                <img src="{{ url_for('static', filename='neem_comb.jpg') }}" class="product-img">
-                <h3>Handcrafted Neem Comb</h3>
-                <p>Natural anti-bacterial wood for scalp health.</p>
-                <div class="card-buttons">
-                    <button onclick="window.location.href='/product/neem-comb'" class="order-now-btn">Check Item</button>
-                    <button onclick="addToCart()" class="add-to-cart-btn-small">Add to Cart +</button>
-                </div>
-            </div>
-
-            <div class="product-card-3d">
-                <img src="{{ url_for('static', filename='wooden_spoons.jpg') }}" class="product-img">
-                <h3>Sheesham Kitchen Set</h3>
-                <p>Premium heat-resistant wooden cooking tools.</p>
-                <div class="card-buttons">
-                    <button onclick="window.location.href='/product/kitchen-set'" class="order-now-btn">Check Item</button>
-                    <button onclick="addToCart()" class="add-to-cart-btn-small">Add to Cart +</button>
-                </div>
-            </div>
-
-            <div class="product-card-3d">
-                <img src="{{ url_for('static', filename='bamboo_toothbrush.jpg') }}" class="product-img">
-                <h3>Bamboo Toothbrush</h3>
-                <p>Biodegradable handles with charcoal bristles.</p>
-                <div class="card-buttons">
-                    <button onclick="window.location.href='/product/toothbrush'" class="order-now-btn">Check Item</button>
-                    <button onclick="addToCart()" class="add-to-cart-btn-small">Add to Cart +</button>
-                </div>
-            </div>
-
-            <div class="product-card-3d">
-                <img src="{{ url_for('static', filename='carry_bag.jpg') }}" class="product-img">
-                <h3>Compostable Carry Bags</h3>
-                <p>100% biodegradable corn-starch bags.</p>
-                <div class="card-buttons">
-                    <button onclick="window.location.href='/product/carry-bag'" class="order-now-btn">Check Item</button>
-                    <button onclick="addToCart()" class="add-to-cart-btn-small">Add to Cart +</button>
-                </div>
-            </div>
-
-            <div class="product-card-3d">
-                <img src="{{ url_for('static', filename='garbage_liner.jpg') }}" class="product-img">
-                <h3>Bio-Garbage Liners</h3>
-                <p>Heavy-duty, leak-proof eco-friendly liners.</p>
-                <div class="card-buttons">
-                    <button onclick="window.location.href='/product/garbage-liner'" class="order-now-btn">Check Item</button>
-                    <button onclick="addToCart()" class="add-to-cart-btn-small">Add to Cart +</button>
-                </div>
-            </div>
-
+       <div class="product-grid">
+    <div class="product-card-3d">
+        <img src="{{ url_for('static', filename='images/bag-front.jpg') }}" class="product-img">
+        <h3>U-Cut Bag</h3>
+        <p>100% biodegradable corn-starch bags.</p>
+        <div class="card-buttons">
+            <button onclick="window.location.href='/product/u-cut-bag'" class="order-now-btn">Check Item</button>
+            <button onclick="addToCart()" class="add-to-cart-btn-small">Add to Cart +</button>
         </div>
+    </div>
+</div>
 
         <div id="floatingCart" class="floating-cart-bar">
             <div class="cart-info">

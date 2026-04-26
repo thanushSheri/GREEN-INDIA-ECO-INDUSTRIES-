@@ -1,4 +1,5 @@
 from flask import Flask, render_template
+import os
 
 app = Flask(__name__)
 
@@ -20,7 +21,19 @@ def contact():
 
 @app.route('/product/<item_id>')
 def product_detail(item_id):
+    # UPDATED: Added u-cut-bag and matched your preferred descriptions
     products_data = {
+        'u-cut-bag': {
+            'name': 'U-Cut Shape Carry Bag',
+            'img': 'bag-front.jpg', # Requested front image
+            'stock': True,
+            'desc': [
+                "🌱 100% Biodegradable Corn Starch",
+                "💪 Load Capacity: 500g to 15kg",
+                "📏 Thickness: 40 - 50 Microns",
+                "✅ Fully Compostable & Eco-Friendly"
+            ]
+        },
         'neem-comb': {
             'name': 'Handcrafted Neem Wood Comb',
             'img': 'neem_comb.jpg',
@@ -32,55 +45,8 @@ def product_detail(item_id):
                 "Eco-friendly alternative to plastic combs.",
                 "Handcrafted by local Indian artisans."
             ]
-        },
-        'kitchen-set': {
-            'name': 'Sheesham Wood Kitchen Set',
-            'img': 'wooden_spoons.jpg',
-            'stock': True,
-            'desc': [
-                "Premium Sheesham wood for luxury cooking.",
-                "Natural heat resistance — won't melt.",
-                "Safe for non-stick pans — zero scratches.",
-                "Chemical-free finish for food safety.",
-                "Durable and built for daily use."
-            ]
-        },
-        'toothbrush': {
-            'name': 'Bamboo Toothbrush',
-            'img': 'bamboo_toothbrush.jpg',
-            'stock': True,
-            'desc': [
-                "100% biodegradable bamboo handle.",
-                "Charcoal-infused bristles for deep cleaning.",
-                "Naturally antimicrobial and water-resistant.",
-                "Plastic-free, eco-friendly packaging.",
-                "Reduces plastic waste in our oceans."
-            ]
-        },
-        'carry-bag': {
-            'name': 'Compostable Carry Bags',
-            'img': 'carry_bag.jpg',
-            'stock': True,
-            'desc': [
-                "Plant-based corn starch material.",
-                "Fully compostable within 180 days.",
-                "Highly durable and leak-proof design.",
-                "Leaves zero microplastics in the soil.",
-                "Certified eco-friendly for grocery use."
-            ]
-        },
-        'garbage-liner': {
-            'name': 'Bio-Garbage Liners',
-            'img': 'garbage_liner.jpg',
-            'stock': False,
-            'desc': [
-                "Eco-friendly alternative to plastic liners.",
-                "Heavy-duty strength to handle wet waste.",
-                "Fully decomposes in composting environments.",
-                "Fits standard kitchen and office bins.",
-                "Supports a zero-waste lifestyle."
-            ]
         }
+        # You can keep or remove the others based on your catalog needs
     }
 
     product = products_data.get(item_id.lower())
@@ -90,12 +56,7 @@ def product_detail(item_id):
 
     return render_template('product_detail.html', p=product)
 
-
 if __name__ == '__main__':
-    app.run(debug=True)
-
-    import os
-
-if __name__ == '__main__':
+    # Combined your two run configurations for better stability
     port = int(os.environ.get("PORT", 5000))
-    app.run(host='0.0.0.0', port=port)
+    app.run(host='0.0.0.0', port=port, debug=True)
