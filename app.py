@@ -114,7 +114,30 @@ products_data = {
             "Strong seams to prevent tearing.",
             "Fully recyclable and compostable."
         ]
-    }
+    },
+    'brown-plate': {
+        'name': 'Brown Kraft Paper Plate',
+        'images': ['brown_plate.jpg', 'brown_plate1.jpg', 'brown_plate2.jpg'],
+        'stock': True,
+        'desc': [
+            "Crafted from recycled kraft paper.",
+            "Lightweight yet durable for daily use.",
+            "100% compostable and eco-friendly.",
+            "Ideal for parties, events, and takeaways."
+        ]
+    },
+        'green-plate': {
+        'name': 'Eco-Friendly Green Leaf Plate',
+        'images': ['green_plate.jpg', 'green_plate1.jpg', 'green_plate2.jpg'],
+        'stock': True,
+        'desc': [
+            "Made from natural biodegradable leaves.",
+            "Chemical-free and safe for food serving.",
+            "Strong and leak-resistant design.",
+            "Perfect alternative to plastic disposable plates."
+        ]
+    },
+    
 }
 
 @app.route('/')
